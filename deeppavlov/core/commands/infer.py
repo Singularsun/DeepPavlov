@@ -15,7 +15,7 @@
 from pathlib import Path
 from typing import Optional
 
-from deeppavlov.core.commands.utils import set_deeppavlov_root, import_packages
+from deeppavlov.core.commands.utils import import_packages
 from deeppavlov.core.common.chainer import Chainer
 from deeppavlov.core.common.file import read_json
 from deeppavlov.core.common.log import get_logger
@@ -28,7 +28,6 @@ def build_model_from_config(config: [str, Path, dict], mode: str = 'infer', load
     """Build and return the model described in corresponding configuration file."""
     if isinstance(config, (str, Path)):
         config = read_json(config)
-    set_deeppavlov_root(config)
 
     import_packages(config.get('metadata', {}).get('imports', []))
 

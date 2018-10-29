@@ -20,7 +20,7 @@ from pathlib import Path
 import sys
 
 import deeppavlov
-from deeppavlov.core.commands.utils import set_deeppavlov_root, expand_path
+from deeppavlov.core.commands.utils import expand_path
 from deeppavlov.core.common.file import read_json
 from deeppavlov.core.data.utils import download, download_decompress, get_all_elems_from_json
 from deeppavlov.core.common.log import get_logger
@@ -56,8 +56,6 @@ def get_config_downloads(config_path):
     config_references = [expand_path(config_ref) for config_ref in get_all_elems_from_json(config, 'config_path')]
 
     downloads |= {(url, dest) for config in config_references for url, dest in get_config_downloads(config)}
-
-    set_deeppavlov_root({'deeppavlov_root': dp_root_back})
 
     return downloads
 
