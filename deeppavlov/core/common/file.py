@@ -14,11 +14,12 @@
 
 import json
 import pickle
+from collections import OrderedDict
 
 
 def read_json(fpath):
     with open(fpath, encoding='utf8') as fin:
-        return json.load(fin)
+        return json.load(fin, object_pairs_hook=OrderedDict)
 
 
 def save_json(data, fpath):
